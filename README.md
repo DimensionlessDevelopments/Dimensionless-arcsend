@@ -45,6 +45,25 @@ Cross-chain transfers are often fragmented:
 - **Poor visibility** into source liquidity and route quality
 - **Inconsistent operations** between UI and automation flows
 
+
+ArcSend delivers cross-chain USDC payment/transfer flows and treasury operations through one backend orchestration layer and one frontend experience. ArcSend demonstrates capital mobility in the exact sequence requested by the prompt: capital is sourced from available chain liquidity, routed via Arc-aware orchestration, and settled through Circle-powered execution. The user does not need to leave the product or manually compose chain-specific bridge workflows, which is the core abstraction goal.
+
+ArcSend includes scheduler-triggered payout runs, policy windows, and automated retry processing with backoff. Payout runs are itemized per recipient and chain, and execution metadata is tracked at item and run level.
+
+
+- Frontend React app provides a unified interface and hides cross-chain complexity.
+- Backend orchestrates auth, wallet creation, balance lookup, and cross-chain transfer execution.
+- Circle tools are abstracted in `circleService.js` to keep app logic chain-agnostic.
+- PostgreSQL stores app-level state for users, wallet mapping, and transaction history.
+- CLI offers power-user automation and demonstrates backend-first architecture.
+
+It cleanly separates UX abstraction (React app), crosschain execution logic (Express/Circle services), and financial operations automation (Prisma policy/scheduler/retry models).
+That architecture is exactly what enables both:
+chain-abstracted USDC movement, and
+automated, policy-driven treasury payout operations.
+
+
+
 ArcSend simplifies this with one system for routing, execution, and observability.
 
 ---
