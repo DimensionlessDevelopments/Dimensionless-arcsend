@@ -1,7 +1,7 @@
 # Dimensionless Developments ArcSend
 
 <p align="center">
-	<img src="assets/badges/arcsend-brand.svg" alt="ArcSend" width="420" />
+	<img src="https://camo.githubusercontent.com/fc9212ff1886cf4f5f5c12444bfdf11c8b4face3450c1b975a9d387dbc5961dc/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f41726353656e642d4279253230436972636c652532307825323044696d656e73696f6e6c657373446576656c6f706d656e74732532304d56502d3131313832373f7374796c653d666c61742d737175617265" alt="ArcSend" width="420" />
 </p>
 
 <p align="center">
