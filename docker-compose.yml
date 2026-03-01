@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:16
+    container_name: arcsend-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: arcsend
+      POSTGRES_PASSWORD: arcsend
+      POSTGRES_DB: arcsend
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

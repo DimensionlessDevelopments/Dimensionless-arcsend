@@ -1,0 +1,18 @@
+{
+  "name": "arcsend-mvp",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm --workspace @arcsend/backend run dev",
+    "dev:frontend": "npm --workspace @arcsend/frontend run dev",
+    "dev:cli": "npm --workspace @arcsend/cli run dev",
+    "build": "npm -ws run build",
+    "badges:generate": "node scripts/generate-badges.mjs"
+  },
+  "devDependencies": {
+    "badge-maker": "^5.0.2"
+  }
+}

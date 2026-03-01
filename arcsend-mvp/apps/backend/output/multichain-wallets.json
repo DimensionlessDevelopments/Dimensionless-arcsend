@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-03-01T02:30:37.414Z",
+  "walletSetId": "7db40512-ce6c-53e7-981b-b8cd363b5de6",
+  "wallets": [
+    {
+      "chain": "base",
+      "blockchain": "BASE-SEPOLIA",
+      "walletId": "a9727b99-ca06-5038-9f31-720d787573c1",
+      "walletAddress": "0x87722fcf49fb1ab838969be2e0cfda53e316e0aa",
+      "mode": "created",
+      "usdcAddressConfigured": false
+    },
+    {
+      "chain": "ethereum",
+      "blockchain": "ETH-SEPOLIA",
+      "walletId": "025acaf4-a3c2-59d0-8324-eabea503d4d7",
+      "walletAddress": "0x87722fcf49fb1ab838969be2e0cfda53e316e0aa",
+      "mode": "created",
+      "usdcAddressConfigured": false
+    },
+    {
+      "chain": "polygon",
+      "blockchain": "MATIC-AMOY",
+      "walletId": "d1f39b26-e23b-583a-a9fc-9b9951e8cdd6",
+      "walletAddress": "0x87722fcf49fb1ab838969be2e0cfda53e316e0aa",
+      "mode": "created",
+      "usdcAddressConfigured": false
+    },
+    {
+      "chain": "solana",
+      "blockchain": "SOL-DEVNET",
+      "walletId": "55137725-2581-5732-ae13-bb42385ae8ab",
+      "walletAddress": "2U3cc3c33YBdNBqVfXY44UPtHYaPJRPeiBoH4DYFV9dz",
+      "mode": "created",
+      "usdcAddressConfigured": false
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@arcsend/backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "circle:wallet:init": "node --env-file=.env --import=tsx scripts/create-wallet.ts",
+    "circle:wallet:init:multichain": "node --env-file=.env --import=tsx scripts/create-multichain-wallets.ts",
+    "build": "echo backend build not required"
+  },
+  "dependencies": {
+    "@circle-fin/developer-controlled-wallets": "^10.1.0",
+    "@prisma/client": "^6.5.0",
+    "axios": "^1.8.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.15.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.4.0",
+    "prisma": "^6.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

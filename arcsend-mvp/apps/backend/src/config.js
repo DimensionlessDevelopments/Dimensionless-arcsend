@@ -1,0 +1,47 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+export const config = {
+  port: Number(process.env.PORT || 4000),
+  jwtSecret: process.env.JWT_SECRET || 'change_me',
+  mockCircle: (process.env.MOCK_CIRCLE || 'true').toLowerCase() === 'true',
+  circleApiKey: process.env.CIRCLE_API_KEY || '',
+  circleEntitySecret: process.env.CIRCLE_ENTITY_SECRET || '',
+  circleBaseUrl: process.env.CIRCLE_BASE_URL || 'https://api.circle.com',
+  circleWalletSetId: process.env.CIRCLE_WALLET_SET_ID || '',
+  circleWalletId: process.env.CIRCLE_WALLET_ID || '',
+  circleWalletAddress: process.env.CIRCLE_WALLET_ADDRESS || '',
+  circleWalletBlockchain: process.env.CIRCLE_WALLET_BLOCKCHAIN || 'ARC-TESTNET',
+  circleWalletIdArcTestnet: process.env.CIRCLE_WALLET_ID_ARC_TESTNET || '',
+  circleWalletAddressArcTestnet: process.env.CIRCLE_WALLET_ADDRESS_ARC_TESTNET || '',
+  circleWalletBlockchainArcTestnet: process.env.CIRCLE_WALLET_BLOCKCHAIN_ARC_TESTNET || 'ARC-TESTNET',
+  circleUsdcAddressArcTestnet:
+    process.env.CIRCLE_USDC_ADDRESS_ARC_TESTNET || '0x3600000000000000000000000000000000000000',
+  circleWalletIdBaseSepolia: process.env.CIRCLE_WALLET_ID_BASE_SEPOLIA || '',
+  circleWalletAddressBaseSepolia: process.env.CIRCLE_WALLET_ADDRESS_BASE_SEPOLIA || '',
+  circleWalletBlockchainBaseSepolia: process.env.CIRCLE_WALLET_BLOCKCHAIN_BASE_SEPOLIA || 'BASE-SEPOLIA',
+  circleUsdcAddressBaseSepolia: process.env.CIRCLE_USDC_ADDRESS_BASE_SEPOLIA || '',
+  circleWalletIdEthSepolia: process.env.CIRCLE_WALLET_ID_ETH_SEPOLIA || '',
+  circleWalletAddressEthSepolia: process.env.CIRCLE_WALLET_ADDRESS_ETH_SEPOLIA || '',
+  circleWalletBlockchainEthSepolia: process.env.CIRCLE_WALLET_BLOCKCHAIN_ETH_SEPOLIA || 'ETH-SEPOLIA',
+  circleUsdcAddressEthSepolia: process.env.CIRCLE_USDC_ADDRESS_ETH_SEPOLIA || '',
+  circleWalletIdMaticAmoy: process.env.CIRCLE_WALLET_ID_MATIC_AMOY || '',
+  circleWalletAddressMaticAmoy: process.env.CIRCLE_WALLET_ADDRESS_MATIC_AMOY || '',
+  circleWalletBlockchainMaticAmoy: process.env.CIRCLE_WALLET_BLOCKCHAIN_MATIC_AMOY || 'MATIC-AMOY',
+  circleUsdcAddressMaticAmoy: process.env.CIRCLE_USDC_ADDRESS_MATIC_AMOY || '',
+  circleWalletIdSolDevnet: process.env.CIRCLE_WALLET_ID_SOL_DEVNET || '',
+  circleWalletAddressSolDevnet: process.env.CIRCLE_WALLET_ADDRESS_SOL_DEVNET || '',
+  circleWalletBlockchainSolDevnet: process.env.CIRCLE_WALLET_BLOCKCHAIN_SOL_DEVNET || 'SOL-DEVNET',
+  circleUsdcAddressSolDevnet: process.env.CIRCLE_USDC_ADDRESS_SOL_DEVNET || '',
+  circleSoftFallbackEnabled: (process.env.CIRCLE_SOFT_FALLBACK_ENABLED || 'false').toLowerCase() === 'true',
+  schedulerEnabled: (process.env.SCHEDULER_ENABLED || 'false').toLowerCase() === 'true',
+  schedulerIntervalMs: Number(process.env.SCHEDULER_INTERVAL_MS || 60000),
+  schedulerMaxPolicies: Number(process.env.SCHEDULER_MAX_POLICIES || 20),
+  schedulerRetryEnabled: (process.env.SCHEDULER_RETRY_ENABLED || 'true').toLowerCase() === 'true',
+  schedulerRetryMaxRuns: Number(process.env.SCHEDULER_RETRY_MAX_RUNS || 10),
+  schedulerRetryMaxItems: Number(process.env.SCHEDULER_RETRY_MAX_ITEMS || 100),
+  payoutRetryBaseDelayMs: Number(process.env.PAYOUT_RETRY_BASE_DELAY_MS || 60000),
+  payoutRetryMaxDelayMs: Number(process.env.PAYOUT_RETRY_MAX_DELAY_MS || 1800000),
+  payoutRetryDefaultMaxAttempts: Number(process.env.PAYOUT_RETRY_DEFAULT_MAX_ATTEMPTS || 3)
+};

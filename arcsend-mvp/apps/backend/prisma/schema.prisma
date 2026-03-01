@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  passwordHash String
+  createdAt    DateTime      @default(now())
+  wallets      Wallet[]
+  transactions Transaction[]
+  payoutRecipients PayoutRecipient[]
+  payoutPolicies   PayoutPolicy[]
+  payoutRuns       PayoutRun[]
+}
+
+model Wallet {
+  id            String   @id @default(cuid())
+  userId        String
+  circleWalletId String?
+  defaultChain  String
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Transaction {
+  id            String   @id @default(cuid())
+  userId        String
+  fromChain     String
+  toChain       String
+  amount        String
+  recipient     String
+  status        String
+  bridgeType    String
+  txHash        String?
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum ScheduleType {
+  MANUAL
+  WEEKLY
+  MONTHLY
+  CUSTOM_CRON
+}
+
+enum PayoutRunStatus {
+  DRAFT
+  APPROVED
+  EXECUTING
+  PARTIAL
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum PayoutItemStatus {
+  PLANNED
+  QUEUED
+  EXECUTING
+  CONFIRMED
+  FAILED
+  SKIPPED
+}
+
+model PayoutRecipient {
+  id        String   @id @default(cuid())
+  userId    String
+  label     String?
+  address   String
+  chain     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payoutItems PayoutItem[]
+
+  @@index([userId])
+  @@unique([userId, address, chain])
+}
+
+model PayoutPolicy {
+  id           String       @id @default(cuid())
+  userId       String
+  name         String
+  scheduleType ScheduleType @default(MANUAL)
+  isActive     Boolean      @default(true)
+  timezone     String       @default("UTC")
+  nextRunAt    DateTime?
+  lastRunAt    DateTime?
+  autoApproveLimitUsdc String @default("0")
+  maxRunAmountUsdc String?
+  minChainLiquidityUsdc String?
+  cronExpression String?
+  rules        Json?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payoutRuns PayoutRun[]
+
+  @@index([userId])
+  @@unique([userId, name])
+}
+
+model PayoutRun {
+  id              String          @id @default(cuid())
+  userId          String
+  policyId        String?
+  scheduleWindowKey String?
+  name            String?
+  status          PayoutRunStatus @default(DRAFT)
+  dryRun          Boolean         @default(true)
+  totalAmountUsdc String          @default("0")
+  itemCount       Int             @default(0)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  policy PayoutPolicy? @relation(fields: [policyId], references: [id], onDelete: SetNull)
+  items PayoutItem[]
+
+  @@index([userId, createdAt])
+  @@index([policyId])
+  @@unique([policyId, scheduleWindowKey])
+}
+
+model PayoutItem {
+  id                String           @id @default(cuid())
+  runId             String
+  recipientId       String?
+  recipientLabel    String?
+  recipientAddress  String
+  recipientChain    String
+  amountUsdc        String
+  plannedSourceChain String?
+  plannedRouteId    String?
+  status            PayoutItemStatus @default(PLANNED)
+  retryCount        Int              @default(0)
+  maxRetryAttempts  Int              @default(3)
+  nextRetryAt       DateTime?
+  lastAttemptAt     DateTime?
+  lastErrorCode     String?
+  reason            String?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  run PayoutRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  recipient PayoutRecipient? @relation(fields: [recipientId], references: [id], onDelete: SetNull)
+
+  @@index([runId])
+  @@index([recipientId])
+  @@index([status, nextRetryAt])
+}

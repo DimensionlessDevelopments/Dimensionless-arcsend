@@ -1,0 +1,16 @@
+{
+  "name": "arcsend-cli",
+  "version": "1.0.1",
+  "type": "module",
+  "bin": {
+    "arcsend": "src/index.js"
+  },
+  "scripts": {
+    "dev": "node src/index.js --help",
+    "build": "echo cli build not required"
+  },
+  "dependencies": {
+    "axios": "^1.8.2",
+    "commander": "^12.1.0"
+  }
+}

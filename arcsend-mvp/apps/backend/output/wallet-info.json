@@ -1,0 +1,11 @@
+{
+  "id": "61440397-61c3-5374-804b-df60f4ab75ec",
+  "state": "LIVE",
+  "walletSetId": "7db40512-ce6c-53e7-981b-b8cd363b5de6",
+  "custodyType": "DEVELOPER",
+  "address": "0x87722fcf49fb1ab838969be2e0cfda53e316e0aa",
+  "blockchain": "ARC-TESTNET",
+  "accountType": "EOA",
+  "updateDate": "2026-02-28T12:02:16Z",
+  "createDate": "2026-02-28T12:02:16Z"
+}
